@@ -29,6 +29,6 @@ while True:
         x = message[1]
         y = message[2]
         z = message[3]
-        plot = (int(t), int(x), int(y), int(z))
+        plot = (float(t), float(x), float(y), float(z))
         print(plot)
         mb.sleep(10)

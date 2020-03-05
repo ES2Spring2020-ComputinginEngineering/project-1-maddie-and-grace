@@ -26,7 +26,7 @@ while not mb.button_a.is_pressed():
     acc_y= mb.accelerometer.get_y()
     acc_z= mb.accelerometer.get_z()
     time1 = mb.running_time()
-    elapsed_time = time1 - time0
+    elapsed_time = round((time1 - time0)/1000,1)
     message = str(elapsed_time) + ', ' + str(acc_x) + ', ' + str(acc_y) + ', ' +  str(acc_z)
     radio.send(message)
     print(message)
