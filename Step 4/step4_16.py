@@ -36,7 +36,7 @@ def plots():
     figs, axs = plt.subplots(4,1)
     axs[0].plot(time, x_acc) 
     
-    axs[0].set_title('accelerationvs. time')
+    axs[0].set_title('16 inch pendulum')
     axs[0].set_ylabel('x acceleration')
     
     axs[1].plot(time, z_acc) 
