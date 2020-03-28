@@ -63,12 +63,18 @@ def period_vs_time():
 
 #script 
 theta = find_tilt_y(x_acc, y_acc, z_acc)
-    
-peaks = sig.find_peaks(x_acc) 
-indices = peaks[0]
 
-for x in indices:
-     y = time[x] 
+
+x_acc_filt = sig.medfilt(x_acc) 
+peaks = sig.find_peaks(x_acc_filt) 
+
+x_pks, _ = sig.find_peaks(x_acc_filt)
+new_time = time[x_pks]
+period = []
+for x in range(len(new_time)-1):
+    y = new_time[x+1] - new_time[x]
+    period += [y]
+period_24 = (1 / np.average(period))
     
 
 plots()
