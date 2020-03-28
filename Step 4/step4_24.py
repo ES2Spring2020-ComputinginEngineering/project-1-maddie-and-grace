@@ -26,59 +26,41 @@ def find_tilt_y(acc_x, acc_y, acc_z):
     z2 =(acc_z**2)
     x2 =(acc_x**2)
     result = np.sqrt(z2+x2)
-    Tiltz=(np.arctan2(acc_y, result))*(180/np.pi)
-    return Tiltz
+    Tilty =(np.arctan2(acc_y, result))*(180/np.pi)
+    return Tilty
 
 #this function plots time vs accel, theta and period using the raw data from teh microbit
 #it takes no arguments
 #it returns the subplots
 def plots():
-    figs, axs = plt.subplots(2,1)
+    theta = find_tilt_y(x_acc, y_acc, z_acc)
+    
+    figs, axs = plt.subplots(3,1)
     axs[0].plot(time, y_acc)
     axs[0].set_title('24 inch pendulum')
-    axs[0].set_ylabel('z accel')
+    axs[0].set_ylabel('y acc')
     
     axs[1].plot(time, x_acc) 
-    axs[1].set_ylabel('x accel')
+    axs[1].set_ylabel('x acc')
+    
+    axs[2].plot(time, theta) 
+    axs[2].set_ylabel('theta')
+    axs[2].set_xlabel('time')
     
     return plt.show()
-
-def theta_vs_time():
-    theta = find_tilt_y(x_acc, y_acc, z_acc)
-    plt.plot(time, theta)
-    plt.xlabel('time')
-    plt.ylabel('theta (degrees)')
-    return plt.show()
-    
-def period_vs_time():
-    theta = find_tilt_x(x_acc, y_acc, z_acc)
-    
-    peaks = sig.find_peaks(theta) #returns indicises of peaks 
-   
-    
-    plt.plot(time,peaks) 
-    plt.ylabel('period')
-    plt.xlabel('time')
-    return plt.show() 
 
 #script 
-theta = find_tilt_y(x_acc, y_acc, z_acc)
-
-
 x_acc_filt = sig.medfilt(x_acc) 
-peaks = sig.find_peaks(x_acc_filt) 
-
 x_pks, _ = sig.find_peaks(x_acc_filt)
+
 new_time = time[x_pks]
 period = []
+
 for x in range(len(new_time)-1):
     y = new_time[x+1] - new_time[x]
     period += [y]
-period_24 = (1 / np.average(period))
+period_24 = np.average(period)
     
-
 plots()
-
-theta_vs_time()
 
 
