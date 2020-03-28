@@ -56,5 +56,7 @@ def plots():
 theta = find_tilt_x(x_acc, y_acc, z_acc)
 
 x_acc_peaks = sig.find_peaks(x_acc) 
+for x in x_acc_peaks :
+    
 
 plots()

@@ -64,13 +64,12 @@ def period_vs_time():
 #script 
 theta = find_tilt_y(x_acc, y_acc, z_acc)
     
-peaks = sig.find_peaks(theta) 
+peaks = sig.find_peaks(x_acc) 
 indices = peaks[0]
 
-#for x in indices:
-#     y = time[x,:]
+for x in indices:
+     y = time[x] 
     
-
 
 plots()
 
