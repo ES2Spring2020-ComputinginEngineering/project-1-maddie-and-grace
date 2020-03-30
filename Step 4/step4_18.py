@@ -12,10 +12,10 @@ import scipy.signal as sig
 file_1 = '18n.csv'
 test = pd.read_csv(file_1)
 result = test.values
-time = result[80:300, 0]
-x_acc =  result[80:300, 1]
-y_acc =  result[80:300,2]
-z_acc =  result[80:300, 3]
+time = result[80:250, 0]
+x_acc =  result[80:250, 1]
+y_acc =  result[80:250,2]
+z_acc =  result[80:250, 3]
 
 #fucntions
 
@@ -61,6 +61,6 @@ for x in range(len(new_time)-1):
     period += [y]
 period_18 = np.average(period)
     
-plots()
+#plots()
 
 

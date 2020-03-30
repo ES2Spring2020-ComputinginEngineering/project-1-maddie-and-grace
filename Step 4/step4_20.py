@@ -61,6 +61,6 @@ for x in range(len(new_time)-1):
     period += [y]
 period_20 = np.average(period) 
     
-plots()
+#plots()
 
 
