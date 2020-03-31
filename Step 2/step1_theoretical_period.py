@@ -24,9 +24,9 @@ def len_vs_per():
     x = lengths
     y = period(lengths)
     plt.plot(x, y)
-    plt.xlabel('length of pendulum')
+    plt.xlabel('length (in)')
     plt.ylabel('period')
-    plt.title('length vs. period')
+    plt.title('period vs. length of pendulum')
     return plt.show()
 
 #main 

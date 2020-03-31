@@ -7,6 +7,10 @@ import matplotlib.pyplot as plt
 import scipy.signal as sig 
 
 #custom functions
+
+#this function models how theta, velocity and acceleration of a pendulum would change based off the euluer step model
+#it takes 4 arguments all integers which are the acceleration, theta, velocity and length of the pendulum 
+#it returns three integers which are the next theta, velocity, and acceleration of the pendulum based off the eurler step model 
 def update_system(acc,theta,vel,length):
     dt = .005
     thetaNext = theta+vel*dt
@@ -14,6 +18,9 @@ def update_system(acc,theta,vel,length):
     accNext = -386.1*np.sin(theta)/length 
     return thetaNext,velNext, accNext
 
+#this function simulates the movement of a pendulum by updating three lists with calculated values for how acc, vel, and theta changes for a pendulum of a given length 
+#it takes one argument an integer which is the length of the pendulum in inches
+#it returns three lists the theta, velocity, and acceleration of the pendulum 
 def sim(length):
     theta = [np.pi/4]
     vel = [0]
@@ -28,6 +35,9 @@ def sim(length):
         i += 1
     return theta, vel, acc
 
+#this function calulates the period of the pendulum based off the data collected by the simulation
+#it takes one argument the list of positions of the pendulum known as theta
+#it returns the period of that pendulum based off the positions which occurr at certain times
 def find_period(theta): 
     time = np.linspace(0,20,4000)
     theta_filt = sig.medfilt(theta) 
@@ -43,6 +53,9 @@ def find_period(theta):
     
     return period
 
+#this function graphs the periods of pendulums against their lengths based on the data gathered in the simulation 
+#it takes no arguments 
+#it returns the plot that is period vs. length
 def graph_periods():
     theta_24, vel, acc = sim(24)
     theta_22, vel, acc = sim(22)
@@ -64,14 +77,16 @@ def graph_periods():
     plt.xlabel('lengths (in)')
     return plt.show()
     
-
+#this function plots a subplot containing time vs. vel, acc, and theta based on the data gathered in the simulation
+#it takes one argument an integer that is the length of the pendulum in inches
+#it returns the subplot that contains the three plots discussed in the purpose
 def plots(length):
     time = np.linspace(0,20,4000)
     theta, vel, acc = sim(length)
     
     figs, axs = plt.subplots(3,1)
     axs[0].plot(time, theta[:])
-    axs[0].set_title('_ in pendulum')
+    axs[0].set_title(str(length) + ' inch pendulum')
     axs[0].set_ylabel('theta (degrees)')
     
     axs[1].plot(time, acc[:]) 
@@ -83,12 +98,10 @@ def plots(length):
     
     return plt.show()
 
-# initial conditions
-
 #main script
 
-plots(22)
 plots(24)
+plots(22)
 plots(20)
 plots(18)
 plots(16)

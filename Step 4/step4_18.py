@@ -38,14 +38,14 @@ def plots():
     figs, axs = plt.subplots(3,1)
     axs[0].plot(time, y_acc)
     axs[0].set_title('18 inch pendulum')
-    axs[0].set_ylabel('y acc')
+    axs[0].set_ylabel('y acc (in/s^2)')
     
     axs[1].plot(time, x_acc) 
-    axs[1].set_ylabel('x acc')
+    axs[1].set_ylabel('x acc (in/s^2)')
     
     axs[2].plot(time, theta) 
-    axs[2].set_ylabel('theta')
-    axs[2].set_xlabel('time')
+    axs[2].set_ylabel('theta (degrees)')
+    axs[2].set_xlabel('time (s)')
     
     return plt.show()
 
