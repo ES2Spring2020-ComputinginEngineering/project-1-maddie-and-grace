@@ -7,8 +7,9 @@ Team Name: maddie-and-grace
 To get our results/graphs for Step 2 (predicted pendulum periods graphs) run the file step1_theoretical_period.py
 To get our results/graphs for Step 4 (the real world experimental pendulum graphs) run the file all_plots.py 
 To get our results/graphs for Step 5 (the numerical model) run the file step5(2).py
-Each file is in the folder for their respective steps
+Each files are in the folder for their respective steps
 
+The 5 data sets are located in the step 4 folder and are labeled by length. 
 
 Your final submission should include (on GitHub):
 

@@ -30,7 +30,7 @@ def len_vs_per():
     return plt.show()
 
 #main 
-print(len_vs_per()) 
+len_vs_per()
 
 #limits of this model - 
 #we must assume that there is constant acceleration from gravity free of air resistance
