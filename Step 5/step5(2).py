@@ -6,17 +6,19 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy.signal as sig 
 
-#global variables 
-
 #custom functions
 def update_system(acc,theta,vel,length):
-    dt = .01
+    dt = .005
     thetaNext = theta+vel*dt
     velNext = vel+acc*dt
-    accNext = -386.1*np.sin(theta)/length
+    accNext = -386.1*np.sin(theta)/length 
     return thetaNext,velNext, accNext
 
 def sim(length):
+    theta = [np.pi/4]
+    vel = [0]
+    acc = [0]
+    time = np.linspace(0,20,4000)
     i = 0
     while i < len(time)-1:
         thetaNext, velNext, accNext = update_system(acc[i-1],theta[i-1],vel[i-1],length)
@@ -26,7 +28,8 @@ def sim(length):
         i += 1
     return theta, vel, acc
 
-def find_period(theta):    
+def find_period(theta): 
+    time = np.linspace(0,20,4000)
     theta_filt = sig.medfilt(theta) 
     x_pks, _ = sig.find_peaks(theta_filt)
     
@@ -47,46 +50,47 @@ def graph_periods():
     theta_18, vel, acc = sim(18)
     theta_16, vel, acc = sim(16)
     
-    period_24 = find_period(theta_24[:1650])
-    period_22 = find_period(theta_22[:1650])
-    period_20 = find_period(theta_20[:1650])
-    period_18 = find_period(theta_18[:1650])
-    period_16 = find_period(theta_16[:1650])
+    period_24 = find_period(theta_24[:])
+    period_22 = find_period(theta_22[:])
+    period_20 = find_period(theta_20[:])
+    period_18 = find_period(theta_18[:])
+    period_16 = find_period(theta_16[:])
     
     periods = np.array([period_24, period_22, period_20, period_18, period_16])
     lengths = np.array([24, 22, 20, 18, 16])
-    plt.plot(lengths, periods) 
+    plt.plot(lengths, periods)
+    plt.title('periods vs. lengths')
     plt.ylabel('periods')
-    plt.xlabel('lengths')
+    plt.xlabel('lengths (in)')
     return plt.show()
     
 
 def plots(length):
+    time = np.linspace(0,20,4000)
     theta, vel, acc = sim(length)
     
     figs, axs = plt.subplots(3,1)
-    axs[0].plot(time, theta[:1650])
-    axs[0].set_title('22 in pendulum')
-    axs[0].set_ylabel('theta')
+    axs[0].plot(time, theta[:])
+    axs[0].set_title('_ in pendulum')
+    axs[0].set_ylabel('theta (degrees)')
     
-    axs[1].plot(time, acc[:1650]) 
-    axs[1].set_ylabel('acc')
+    axs[1].plot(time, acc[:]) 
+    axs[1].set_ylabel('acc(in/s^2)')
     
-    axs[2].plot(time, vel[:1650]) 
-    axs[2].set_ylabel('vel')
-    axs[2].set_xlabel('time')
+    axs[2].plot(time, vel[:]) 
+    axs[2].set_ylabel('vel (in/s)')
+    axs[2].set_xlabel('time(s)')
     
     return plt.show()
 
 # initial conditions
-theta = [np.pi/4]
-vel = [0]
-acc = [0]
-time = np.linspace(0,20,1650)
 
 #main script
 
 plots(22)
 plots(24)
 plots(20)
+plots(18)
+plots(16)
+
 graph_periods()
