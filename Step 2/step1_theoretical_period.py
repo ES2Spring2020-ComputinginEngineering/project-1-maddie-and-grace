@@ -1,5 +1,6 @@
 #Project 1 Step 2
 #Maddie and Grace
+#Step 2 uses knwon physics equations for a pendulum to predict the period based on various pendulum lengths
 
 #import statements
 import numpy as np

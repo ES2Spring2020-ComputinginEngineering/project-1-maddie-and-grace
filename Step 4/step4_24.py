@@ -1,5 +1,7 @@
 #Step 4 Project 1
 #Maddie and Grace
+#Step 4 uses the real world data gathered in step 3 and runs analysis on that data
+
 
 #impmort statements
 import pandas as pd
@@ -50,7 +52,7 @@ def plots():
     return plt.show()
 
 #script 
-x_acc_filt = sig.medfilt(x_acc) 
+x_acc_filt= sig.medfilt(x_acc) 
 x_pks, _ = sig.find_peaks(x_acc_filt)
 
 new_time = time[x_pks]
